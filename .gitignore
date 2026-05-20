@@ -1,0 +1,9 @@
+.playwright-mcp/
+.sisyphus/
+.DS_Store
+*.log
+node_modules/
+*.bak
+*.swp
+.vscode/
+.idea/
