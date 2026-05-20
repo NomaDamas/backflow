@@ -2486,19 +2486,23 @@ function audioInit() {
     masterGain = actx.createGain();
     masterGain.gain.value = userVolume;
     masterGain.connect(actx.destination);
-    droneStart();
-    // Background music — "The Cell's Secret" by Shelley Evans (Pixabay)
-    // Soft loop layered through masterGain so it respects mute + volume slider.
+    // Ensure context is running (some browsers start it suspended until gesture)
+    if (actx.state === 'suspended') actx.resume();
+    // NOTE: The procedural drone (droneStart) was removed per user request —
+    // we now rely solely on the BGM track for the ambient soundscape.
     bgmEl = new Audio('bgm-cells-secret.mp3');
     bgmEl.loop = true;
-    bgmEl.crossOrigin = 'anonymous';
     bgmEl.preload = 'auto';
+    bgmEl.volume = 1.0;            // element volume max — Web Audio chain controls actual level
     const bgmSrc = actx.createMediaElementSource(bgmEl);
     bgmGain = actx.createGain();
-    bgmGain.gain.value = 0.32;       // BGM tucked under SFX; "작게" per user
+    bgmGain.gain.value = 0.55;     // a touch louder now that the drone is gone
     bgmSrc.connect(bgmGain).connect(masterGain);
-    // play() is a Promise; rejection can happen if audio context isn't unlocked yet
-    bgmEl.play().catch(() => {});
+    // Retry play if it fails (autoplay policies require gesture)
+    const tryPlay = () => bgmEl.play().catch(() => {});
+    tryPlay();
+    window.addEventListener('keydown', tryPlay, { once: false });
+    window.addEventListener('pointerdown', tryPlay, { once: false });
   } catch (e) { actx = null; }
 }
 function setVolume(v) {
