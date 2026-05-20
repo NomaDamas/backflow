@@ -1,11 +1,15 @@
 # BACKFLOW
 
+[![▶ PLAY NOW](https://img.shields.io/badge/%E2%96%B6_PLAY_NOW-nomadamas.github.io%2Fbackflow-ffd66e?style=for-the-badge&labelColor=050403)](https://nomadamas.github.io/backflow/)
+
 ![BACKFLOW — THE AUGUR boss fight](hero.png)
 
 > *…for those who were flushed.*
 >
 > **변기톤 출품작.**  
 > **₩1,500,000짜리 배관 견적에서 태어난 2.5D 메트로배니아.**
+
+**▶ 바로 플레이**: [nomadamas.github.io/backflow](https://nomadamas.github.io/backflow/)
 
 ---
 
